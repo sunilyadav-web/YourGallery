@@ -11,8 +11,9 @@ urlpatterns = [
     path('login-validation',loginValidation,name='loginvalidation'),
     path('logout',logout,name='logout'),
     path('my-gallery',mygallery,name='mygallery'),
-    path('make-gallery',makegallery,name='makegallery'),
+    path('add-photo',makegallery,name='makegallery'),
     path('save-gallery',saveGallery,name='savegallery'),
+    path('view-photo',viewPhoto,name='photo'),
     path('delete-image',deleteImage,name='deleteimage'),
     
 ]

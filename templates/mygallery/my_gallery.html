@@ -13,30 +13,13 @@
             margin-bottom: 2rem;
         }
         
-        .gallery-group {
-            column-gap: .5rem;
-            row-gap: .50rem;
-            display: flex;
-        }
-        
-        .gallery-element {
-            background: none;
-        }
-        
-        .gallery-element>img {
-            inline-size: 100%;
-            aspect-ratio: 10/9;
-            object-fit: cover;
-        }
-        
-        .upload-delete {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-        }
-        
         .title {
             margin-top: 2px;
+        }
+        
+        .image-thumbnail {
+            height: 200px;
+            object-fit: cover;
         }
     </style>
 </head>
@@ -70,32 +53,46 @@
         </nav>
     </header>
     <!-- navbar end -->
-    <main class="p-5 ">
-        <div class="justify-content-center d-flex mb-4">
-            <a href="{% url 'makegallery' %}" class="btn btn-warning">Make Gallery</a>
-        </div>
+    <main class="p-3">
+
         {% if not gallery %}
         <div class="mt-5">
             <h4 class="text-center pt-5">You have no Gallery, Please Make gallery </h4>
         </div>
         {% endif%}
         <div class="container">
-            <div class="row gallery-group">
-                {% for data in gallery%}
-                <div class="gallery-element col-3 rounded rounded-2">
-                    <img src="{{data.image.url}}" alt="..." class="rounded rounded-2 img-fluid">
-                    <div class="gallery-body">
-                        <h6 class="title">Caption : {{data.title}}</h6>
-                        <small class='mb-1'>Category : {{data.category}}</small>
-                        <div class="upload-delete">
-                            <small class="text-muted">Upload : {{data.date | date}}</small>
-                            <a class="btn btn-danger btn-sm float-end mb-2" href="/delete-image?id={{data.id}}">Delete</a>
+            <div class="row">
+                <div class="col-md-3">
+                    <div class="card">
+                        <div class="card-header">
+                            Categories
                         </div>
+                        <ul class="list-group list-group-flush">
+                            <li class="list-group-item active">All</li>
+                            {% for cat in category %} {% if cat.cat%}
+                            <li class="list-group-item">{{cat.cat}}</li>
+                            {% endif%} {% endfor %}
+                            <a href="{% url 'makegallery' %}" class="btn btn-dark m-1 btn-sm">Add Photo</a>
+                        </ul>
                     </div>
                 </div>
-                {% if forloop.counter == 4 %}
-                <div class="w-100"></div>
-                {% endif%} {% endfor%}
+                <div class="col-md-9">
+                    <div class="row">
+                        {% for data in gallery%}
+                        <div class="col-md-4 my-2">
+                            <div class="card">
+                                <img src="{{data.image.url}}" class="image-thumbnail img-fluid" alt="...">
+                                <div class="card-body align-items-center justify-content-between d-flex">
+                                    <small>Category : {{data.category}}</small>
+                                    <small><a class="btn btn-danger btn-sm" href="/delete-image?id={{data.id}}">Delete</a></small>
+                                </div>
+                                <a href="/view-photo?id={{data.id}}" class="btn btn-outline-dark btn-sm m-1">View</a>
+                            </div>
+                        </div>
+                        {% endfor%}
+                    </div>
+                </div>
+
             </div>
         </div>
     </main>

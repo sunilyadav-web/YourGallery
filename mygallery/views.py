@@ -63,7 +63,8 @@ def logout(request):
 
 def mygallery(request):
     gallery=Gallery.objects.filter(user=request.session['username'])
-    res=render(request,'mygallery/my_gallery.html',{'gallery':gallery})
+    category=Category.objects.filter(user=request.session['username'])
+    res=render(request,'mygallery/my_gallery.html',{'gallery':gallery,'category':category})
     return res
 
 def makegallery(request):
@@ -88,7 +89,10 @@ def saveGallery(request):
     gallery.save()
     url='http://localhost:8000/my-gallery'
     return HttpResponseRedirect(url)
-
+def viewPhoto(request):
+    photo=Gallery.objects.get(id=request.GET['id'])
+    res=render(request,'mygallery/photo.html',{'photo':photo})
+    return res
 def deleteImage(request):
     g=Gallery.objects.get(id=request.GET['id'])
     g.delete()    
