@@ -24,6 +24,25 @@
         .myalert {
             width: 40% !important;
         }
+        @media screen and (max-width:500px){
+            .login{
+                width:100%;
+                padding:2rem 1rem;
+            }
+        }
+        
+        @media screen and (min-device-width: 469px) and (max-device-width: 767px) {
+            .login{
+                width:80%;
+                padding:2rem;
+            }
+        }
+        @media screen and (min-device-width: 768px) and (max-device-width: 1069px) {
+            .login{
+                width:60%;
+                padding:2rem;
+            }
+        }
     </style>
 </head>
 
@@ -39,26 +58,26 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                         <li class="nav-item">
-                            <a class="nav-link" aria-current="page" href="http://localhost:8000/my-gallery">My Gallery</a>
+                            <a class="nav-link" aria-current="page" href="{% url 'mygallery'%}">My Gallery</a>
                         </li>
 
                         <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="http://localhost:8000/make-gallery">Make Gallery</a>
+                            <a class="nav-link active" aria-current="page" href="{% url 'makegallery'%}">Make Gallery</a>
                         </li>
                     </ul>
                     <div>
-                        <a href="http://localhost:8000/logout" class="btn btn-outline-success">Logout</a>
+                        <a href="{% url 'logout' %}" class="btn btn-outline-success">Logout</a>
                     </div>
                 </div>
             </div>
         </nav>
     </header>
     <!-- navbar end -->
-    <main class="p-5">
+    <main class="p-3 p-sm-5">
 
         <div class="login rounded text-dark">
             <h2 class="heading">Make Gallery</h2>
-            <form method="post" action="http://localhost:8000/save-gallery" enctype="multipart/form-data">
+            <form method="post" action="{% url 'savegallery'%}" enctype="multipart/form-data">
                 {% csrf_token %}
                 <input type="text" hidden name="userid" value="{{request.session.username}}">
                 <div class="mb-3">

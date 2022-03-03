@@ -54,14 +54,14 @@
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                         {% if request.session.username %}
                         <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="http://localhost:8000/my-gallery">My Gallery</a>
+                            <a class="nav-link active" aria-current="page" href="{% url 'mygallery' %}">My Gallery</a>
                         </li>
                         {% endif%}
 
                     </ul>
                     {% if request.session.username %}
                     <div>
-                        <a href="http://localhost:8000/logout" class="btn btn-outline-success">Logout</a>
+                        <a href="{% url 'logout' %}" class="btn btn-outline-success">Logout</a>
                     </div>
 
                     {% endif %}
@@ -72,7 +72,7 @@
     <!-- navbar end -->
     <main class="p-5 ">
         <div class="justify-content-center d-flex mb-4">
-            <a href="http://localhost:8000/make-gallery" class="btn btn-warning">Make Gallery</a>
+            <a href="{% url 'makegallery' %}" class="btn btn-warning">Make Gallery</a>
         </div>
         {% if not gallery %}
         <div class="mt-5">
@@ -89,7 +89,7 @@
                         <small class='mb-1'>Category : {{data.category}}</small>
                         <div class="upload-delete">
                             <small class="text-muted">Upload : {{data.date | date}}</small>
-                            <a class="btn btn-danger btn-sm float-end mb-2" href="http://localhost:8000/delete-image?id={{data.id}}">Delete</a>
+                            <a class="btn btn-danger btn-sm float-end mb-2" href="/delete-image?id={{data.id}}">Delete</a>
                         </div>
                     </div>
                 </div>

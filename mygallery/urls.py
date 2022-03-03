@@ -3,15 +3,15 @@ from mygallery.views import *
 
 
 urlpatterns = [
-    path('',index),
-    path('signup',signup),
-    path('save-user',saveUser),
-    path('login',login),
-    path('login-validation',loginValidation),
-    path('logout',logout),
-    path('my-gallery',mygallery),
-    path('make-gallery',makegallery),
-    path('save-gallery',saveGallery),
-    path('delete-image',deleteImage),
+    path('',index,name='home'),
+    path('signup',signup,name='signup'),
+    path('save-user',saveUser,name='saveuser'),
+    path('login',login,name='login'),
+    path('login-validation',loginValidation,name='loginvalidation'),
+    path('logout',logout,name='logout'),
+    path('my-gallery',mygallery,name='mygallery'),
+    path('make-gallery',makegallery,name='makegallery'),
+    path('save-gallery',saveGallery,name='savegallery'),
+    path('delete-image',deleteImage,name='deleteimage'),
     
 ]
