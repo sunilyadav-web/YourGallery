@@ -5,6 +5,7 @@ from mygallery.views import *
 urlpatterns = [
     path('',index,name='home'),
     path('signup',signup,name='signup'),
+    path('check-name',checkName,name='checkname'),
     path('save-user',saveUser,name='saveuser'),
     path('login',login,name='login'),
     path('login-validation',loginValidation,name='loginvalidation'),

@@ -11,6 +11,13 @@ def signup(request):
     res=render(request,'mygallery/signup.html')
     return res
 
+def checkName(request):
+    user=User.objects.filter(username=request.GET['username'])
+    if not user:
+        return HttpResponse('true')
+    else:
+        return HttpResponse('false')
+
 def saveUser(request):
     user=User()
     user.username=request.POST['username']
