@@ -62,7 +62,12 @@ def logout(request):
     return HttpResponseRedirect('http://localhost:8000/login')
 
 def mygallery(request):
-    gallery=Gallery.objects.filter(user=request.session['username'])
+    try:
+        fcategory=request.GET['category']
+        gallery=Gallery.objects.filter(user=request.session['username'],category=fcategory)
+    except:
+        gallery=Gallery.objects.filter(user=request.session['username'])
+
     category=Category.objects.filter(user=request.session['username'])
     res=render(request,'mygallery/my_gallery.html',{'gallery':gallery,'category':category})
     return res
